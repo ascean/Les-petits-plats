@@ -86,6 +86,7 @@ p {
             }
         }
     }
+    
 }
 
 .gap-10 {
@@ -97,6 +98,7 @@ p {
     border-bottom-right-radius: 0.25rem!important;
     border-bottom-left-radius: 0.25rem!important;
     margin-top: -10px;
+=======
     
     & .dropdown-item:hover {
         background-color: transparent;
@@ -116,7 +118,6 @@ p {
             font-size: 1.2rem;
         }
     }
-}
 
 .ingredient-container {
     font-size: 0.8rem;
