@@ -27,6 +27,9 @@ navItems.forEach(navItem => {
     navItem.addEventListener("mouseover", () => {
         displayFilter(navItem, "over")
     })
+    navItem.addEventListener("focus", () => {
+        displayFilter(navItem, "over")
+    })
     navItem.addEventListener("mouseleave", () => {
         displayFilter(navItem, "leave")
     })

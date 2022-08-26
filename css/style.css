@@ -77,6 +77,10 @@ p {
   border-bottom-right-radius: 0.25rem !important;
   border-bottom-left-radius: 0.25rem !important;
   margin-top: -10px;
+  top: 93% !important;
+}
+.dropdown-menu.show {
+  display: flex !important;
 }
 .dropdown-menu .dropdown-item:hover {
   background-color: transparent;
@@ -87,7 +91,6 @@ p {
 }
 .card .card-body {
   background-color: #e7e7e7;
-
 }
 .card .card-body .card-title {
   font-size: 1.2rem;
