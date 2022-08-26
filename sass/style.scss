@@ -34,6 +34,9 @@ p {
     box-shadow: none!important;
 }
 
+.navbar-toggler {
+    color: #3282F7;
+}
 .nav-item {
 
     & .form-control {
@@ -95,14 +98,16 @@ p {
 
 //-----------------------SECTION CARTES----------------------
 .dropdown-menu {
-    border-bottom-right-radius: 0.25rem!important;
-    border-bottom-left-radius: 0.25rem!important;
+    border-radius: 0!important;
     margin-top: -10px;
-=======
     
     & .dropdown-item:hover {
         background-color: transparent;
     }
+}
+.dropdown-item:focus {
+    background-color: transparent!important;
+    font-size: 1.2rem;
 }
 
 .card {
@@ -118,7 +123,7 @@ p {
             font-size: 1.2rem;
         }
     }
-
+}
 .ingredient-container {
     font-size: 0.8rem;
     line-height: normal;

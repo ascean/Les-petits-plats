@@ -32,6 +32,10 @@ p {
   box-shadow: none !important;
 }
 
+.navbar-toggler {
+  color: #3282F7;
+}
+
 .nav-item .form-control {
   top: 0;
   left: 4px;
@@ -74,16 +78,16 @@ p {
 }
 
 .dropdown-menu {
-  border-bottom-right-radius: 0.25rem !important;
-  border-bottom-left-radius: 0.25rem !important;
+  border-radius: 0 !important;
   margin-top: -10px;
-  top: 93% !important;
-}
-.dropdown-menu.show {
-  display: flex !important;
 }
 .dropdown-menu .dropdown-item:hover {
   background-color: transparent;
+}
+
+.dropdown-item:focus {
+  background-color: transparent !important;
+  font-size: 1.2rem;
 }
 
 .card .card-img-top {
