@@ -86,7 +86,6 @@ p {
             }
         }
     }
-    
 }
 
 .gap-10 {
@@ -111,13 +110,16 @@ p {
 
     & .card-img-top {
         background-color: darkgrey;
+        height: 200px;
     }
     
     & .card-body {
         background-color: #e7e7e7;
+        height: 220px;
     
         & .card-title {
             font-size: 1.2rem;
+            height: 50px;
         }
     }
 }
@@ -125,7 +127,23 @@ p {
     font-size: 0.8rem;
     line-height: normal;
 }
-.instructions {
+
+
+@mixin line-clamp($lines, $line-height) {
+    display: block;
+    display: -webkit-box;
+    -webkit-line-clamp: $lines;
+    -webkit-box-orient: vertical;
+    max-height: $lines * $line-height;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+.instructions p {
     font-size: 0.8rem;
     line-height: normal;
+    text-overflow: ellipsis;
+    height:200px;
+    @include line-clamp(7, 1.2em);
+
 }

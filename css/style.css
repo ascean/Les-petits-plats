@@ -88,12 +88,15 @@ p {
 
 .card .card-img-top {
   background-color: darkgrey;
+  height: 200px;
 }
 .card .card-body {
   background-color: #e7e7e7;
+  height: 220px;
 }
 .card .card-body .card-title {
   font-size: 1.2rem;
+  height: 50px;
 }
 
 .ingredient-container {
@@ -101,7 +104,16 @@ p {
   line-height: normal;
 }
 
-.instructions {
+.instructions p {
   font-size: 0.8rem;
   line-height: normal;
+  text-overflow: ellipsis;
+  height: 200px;
+  display: block;
+  display: -webkit-box;
+  -webkit-line-clamp: 7;
+  -webkit-box-orient: vertical;
+  max-height: 8.4em;
+  text-overflow: ellipsis;
+  overflow: hidden;
 }
