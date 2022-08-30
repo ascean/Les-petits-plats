@@ -8,7 +8,7 @@ const navItems = document.querySelectorAll(".nav-item")
  * @param {DOMElement} navItem élément li
  * @param {string} action open ou close
  */
-var displayMenu = (navItem, action) => {
+var displayFiltersMenu = (navItem, action) => {
 
     const inputFilter = navItem.querySelector(".form-control")
     
@@ -28,41 +28,18 @@ var displayMenu = (navItem, action) => {
 }
 
 /**
- * Retour à l'état initial pour lemenu précédemment ouvert
+ * Retour à l'état initial pour le menu actuellement ouvert
  * @param {DOMElement} newNavItem menu sur lequel arrive le focus 
  */
-var resizeMenu = (newNavItem) => {
+var closeFilterMenu = (newNavItem) => {
 
     navItems.forEach(navItem => {
         if (navItem != newNavItem && navItem.classList.contains("show")) {
             navItem.querySelector(".form-control").classList.add("d-none")
             navItem.classList.replace("rounded-top","rounded")
-            navItem.classList.replace("col-lg-6", "col-lg-2")
+            navItem.classList.replace("col-lg-7", "col-lg-2")
             navItem.children[2].classList.remove("show")
         }
     });
 
 }
-
-//--------------------------------------------- LISTENERS MENU ----------------------------------------
-navItems.forEach(navItem => {
-    navItem.addEventListener("mouseover", () => {
-        displayMenu(navItem, "open")
-    })
-
-    navItem.addEventListener("mouseleave", () => {
-        displayMenu(navItem, "close")
-    })
-})
-
-//Pour gestion de la navigation au clavier
-navLinks.forEach(navLink => {
-    navLink.addEventListener("click", () => {
-        const navItem = navLink.parentElement
-        displayMenu(navItem,"open")
-    })
-    navLink.addEventListener("focus", () => {
-        const navItem = navLink.parentElement
-        resizeMenu(navItem)
-    })
-})

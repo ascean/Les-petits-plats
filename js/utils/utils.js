@@ -1,4 +1,4 @@
-
+//gestion des caractères accentués
 String.prototype.noAccent = function(){
     var accentArray = [
         /[\300-\306]/g, /[\340-\346]/g, // A, a
