@@ -32,16 +32,20 @@
         </div>
     </header>
 
-    <section id="section-search" class="rounded my-4">
-        <form id="form-search">
-            <div class="input-group bg-opacity-10 row mx-auto py-2">
-                <input id="input-search" type="search" class="form-control col-12 border-0 bg-transparent text-" placeholder="Rechercher une recette" 
-                aria-label="Rechercher une recette" aria-describedby="search-addon" value=""/>
-                <span class="input-group-text border-0 bg-transparent mr-0" id="search-addon">
-                    <i class="fas fa-search"></i>
-                </span>
-            </div>
-        </form>
+    <section id="section-search">
+        <div class="rounded my-4">
+            <form id="form-search">
+                <div class="input-group rounded bg-opacity-10 row mx-auto py-2 ">
+                    <input id="input-search" type="search" class="form-control col-12 border-0 bg-transparent text-" placeholder="Rechercher une recette" 
+                    aria-label="Rechercher une recette" aria-describedby="search-addon" value=""/>
+                    <span class="input-group-text border-0 bg-transparent mr-0" id="search-addon">
+                        <i class="fas fa-search"></i>
+                    </span>
+                </div>
+            </form>
+        </div>
+        <p id="noresult" class="text-center d-none w-100">Aucune recette ne correspond à votre critère… <br>
+            Vous pouvez chercher « tarte aux pommes », « poisson », etc.</p>
     </section>
     
     <section id="section-filter" class="my-0">
@@ -62,7 +66,7 @@
 
                 <div class="navbar-collapse collapse" id="main_nav">
                     <ul class="navbar-nav w-100 mx-auto row d-flex gap-10">
-                        <li class="nav-item dropdown col col-12 col-lg-2 primary-color rounded position-relative" aria-haspopup="true">
+                        <li class="nav-item dropdown col col-12 col-lg-3 primary-color rounded position-relative" aria-haspopup="true">
                         
                             <a class="nav-link dropdown-toggle text-white d-flex align-items-center justify-content-between px-0 my-2" 
                                     id="navbarIngredientMenuLink" href="#" role="button" data-toggle="dropdown" aria-expanded="false">
@@ -79,7 +83,7 @@
 
                         </li>
                         
-                        <li class="nav-item dropdown col col-12 col-lg-2 success-color rounded position-relative" aria-haspopup="true">
+                        <li class="nav-item dropdown col col-12 col-lg-3 success-color rounded position-relative" aria-haspopup="true">
                         
                             <a class="nav-link dropdown-toggle text-white d-flex align-items-center justify-content-between px-0 my-2" 
                                     id="navbarApplianceMenuLink" href="#" role="button" data-toggle="dropdown" aria-expanded="false">
@@ -97,7 +101,7 @@
                             </div>
 
                         </li>
-                        <li class="nav-item dropdown col col-12 col-lg-2 danger-color rounded position-relative" aria-haspopup="true">
+                        <li class="nav-item dropdown col col-12 col-lg-3 danger-color rounded position-relative" aria-haspopup="true">
                         
                             <a class="nav-link dropdown-toggle text-white d-flex align-items-center justify-content-between px-0 my-2" 
                                     id="navbarUstensilMenuLink" href="#" role="button" data-toggle="dropdown" aria-expanded="false">
@@ -121,6 +125,7 @@
     </section>
     
     <section id="section-recipes" class="my-4 row">
+        
      
         
     </section>
@@ -133,7 +138,7 @@
     <script src="/js/declare_new.js"></script>
     <script src="/js/util_new.js"></script>
     <script src="/js/factory/factory_new.js"></script>
-    <script src="/js/filters/filters_new.js"></script> 
+    <script src="/js/filters/filter.js"></script> 
     <!-- 
 -->
     <!-- 
@@ -142,7 +147,7 @@
         <script src="/js/ustensil/ustensil.js"></script>
     -->
     <script src="/js/filters/tag_new.js"></script>
-    <script src="/js/filters/filtersMenu.js"></script>
+    <script src="/js/filters/filterList.js"></script>
     <script src="/js/recipes/recipes_new.js"></script>
     <script src="/js/listeners_new.js"></script> 
     <script src="/js/init_new.js"></script>

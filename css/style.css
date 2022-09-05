@@ -9,10 +9,10 @@ p {
   font-family: "Roboto";
 }
 
-#section-search {
+#section-search div {
   background-color: #e7e7e7;
 }
-#section-search .input-group-text {
+#section-search div .input-group-text {
   font-size: 1.5rem;
 }
 

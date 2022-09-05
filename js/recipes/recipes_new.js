@@ -9,6 +9,12 @@ var displayRecipes = (mode) => {
     }
 
     let recipesToAddArray = recipesArray.filter(recipe => recipe.display===true)
+    const noResult  = document.getElementById("noresult")
+    if (recipesToAddArray.length == 0) {
+        noResult.classList.remove("d-none")   
+    }else{
+        noResult.classList.add("d-none")   
+    }
 
     for (let i = 0; i < recipesToAddArray.length; i++) {
 

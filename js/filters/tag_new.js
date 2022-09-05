@@ -19,7 +19,7 @@
 
 var searchRecipesWithTags = () => {
 
-    let nbTag=0
+    let nbTag=1
     tagArray = []
 
     //si saisie user dans rechercher une recette
@@ -27,7 +27,11 @@ var searchRecipesWithTags = () => {
         let searchRecipe = inputSearch.value.toLowerCase().noAccent()
         searchForRecipes(searchRecipe)
         tagArray = recipesArray.filter(element => element.display === true)
-        nbTag = 1
+        if (tagArray.length == 0) {
+            nbTag = 0
+        }else{
+            nbTag = 1
+        }
     }
 
     //vérification existence tags
@@ -69,8 +73,12 @@ var searchRecipesWithTags = () => {
         }
     //aucun filtre ni recherche, on affiche toutes les recettes
     }else{
+        let bDisplay = true
+        if (nbTag == 0) {
+            bDisplay = false
+        }
         for (let i = 0; i < recipesArray.length; i++) {
-            recipesArray[i].display = true
+            recipesArray[i].display = bDisplay
         }
     }
 }

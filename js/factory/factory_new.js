@@ -91,25 +91,25 @@ var recipeDatas = (data) => {
 
         for (let i = 0; i < filterArrayToDisplay.length; i++) {
             const filterElement = filterArrayToDisplay[i].accent;
-            if (i % 3 === 0) {
+            // if (i % 2 === 0) {
                 filterRow = document.createElement("div")
                 filterRow.classList.add("d-flex", "w-100", "align-items-start", "justify-content-between", "flex-sm-row")
                 filterDomElement.appendChild(filterRow)
-            }
+            // }
             filterItem = document.createElement("a")
-            filterItem.classList.add(typeFilter,"dropdown-item", "col", "col-4", "text-white", "pl-0", "pl-lg-3")
+            filterItem.classList.add(typeFilter,"dropdown-item", "col", "col-12", "text-white", "pl-0", "pl-lg-3")
             filterItem.innerHTML = `${filterElement}`
             filterRow.appendChild(filterItem)
 
             addFilterListener(filterItem)
         }
-        if (filterArrayToDisplay.length % 3 === 2) {
-            filterItem = document.createElement("a")
-            filterItem.classList.add(typeFilter,"dropdown-item", "col", "col-4", "text-white", "pl-0", "pl-lg-3")
-            filterRow.appendChild(filterItem)
+        // if (filterArrayToDisplay.length % 2 === 1) {
+        //     filterItem = document.createElement("a")
+        //     filterItem.classList.add(typeFilter,"dropdown-item", "col", "col-12", "text-white", "pl-0", "pl-lg-3")
+        //     filterRow.appendChild(filterItem)
 
-            addFilterListener(filterItem)
-        }
+        //     addFilterListener(filterItem)
+        // }
 
     }
 
