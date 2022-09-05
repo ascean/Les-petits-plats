@@ -81,7 +81,10 @@ p {
   background-color: transparent;
 }
 
-.dropdown-item:focus {
+.dropdown-item {
+  cursor: pointer;
+}
+.dropdown-item:hover {
   background-color: transparent !important;
   font-size: 1.2rem;
 }

@@ -101,9 +101,12 @@ p {
         background-color: transparent;
     }
 }
-.dropdown-item:focus {
-    background-color: transparent!important;
-    font-size: 1.2rem;
+.dropdown-item {
+    cursor: pointer;
+    &:hover {
+        background-color: transparent!important;
+        font-size: 1.2rem;
+    }
 }
 
 .card {

@@ -1,10 +1,18 @@
 //-----------------------------------------LISTENERS------------------------------------------
 var setupListeners = () => {
 
-    //Saisie dans la zone de recherche
+    //Saisie dans la zone de recherche des recettes
     inputSearch.addEventListener('input', () => {
-        if (inputSearch.value.length>2) {
-            searchRecipes()
+        searchUserRecipes()
+    })
+    
+    //validation saisie avec Entrée ou clic sur l'icone X
+    inputSearch.addEventListener('search', (e) => {
+        if(inputSearch.value) {
+            searchUserRecipes()
+        }else{
+            displayRecipes()
+            displayFilters()
         }
     })
 
@@ -36,23 +44,25 @@ var setupListeners = () => {
         })
     })
 
-    //mise à jour des filtres + création tag
-    for (let i = 0; i < formFilters.length; i++) {
-        const formFilter = formFilters[i];
-        formFilter.addEventListener("submit", (e) => {
-            e.preventDefault()
-            createTagDOM(e.target.id)
-            updateFilters(e)
-        })
-    }
-
     //Saisie dans une zone de filtre
     for (let i = 0; i < inputFilters.length; i++) {
         const inputFilter = inputFilters[i];
-        inputFilter.addEventListener('input', () => {
-            if (inputFilter.value.length>2) {
-                searchRecipes()
-            }
+        inputFilter.addEventListener('input', (e) => {
+
+            searchUserFilters(e)
+            
         })
     }
+
+    
+
 }
+
+//clic sur un filtre -> suppression de la liste + ajout tag
+var addFilterListener = (filterItem) => {
+
+    filterItem.addEventListener("click", (e) => {
+        clickOnFilter(e)
+    })
+}
+

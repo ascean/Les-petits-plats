@@ -18,3 +18,26 @@ String.prototype.noAccent = function(){
      
     return words;
 }
+
+///remove double elements in array of objects
+var removeDuplicates = (filterArray, field) => {
+    
+    // Declare a new array
+    let filterToDisplay = [];
+    // Declare an empty object
+    let uniqueFilter = {};
+    // Loop for the array elements
+    for (let i in filterArray) {
+        // Extract the element
+        filterField = filterArray[i][field];
+        // Use the element as the index
+        uniqueFilter[filterField] = filterArray[i];
+    }
+      
+    // Loop to push unique object into array
+    for (i in uniqueFilter) {
+        filterToDisplay.push(uniqueFilter[i]);
+    }
+    // Display the unique objects
+    return filterToDisplay
+}
