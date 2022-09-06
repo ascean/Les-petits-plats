@@ -54,5 +54,5 @@ initRecipesArray()
 initFiltersArray()
 
 displayRecipes()
-displayFilters() //Items(appliancesArray,"appliance",applianceFilter)
+displayFilters()
 setupListeners()

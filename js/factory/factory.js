@@ -91,11 +91,11 @@ var recipeDatas = (data) => {
 
         for (let i = 0; i < filterArrayToDisplay.length; i++) {
             const filterElement = filterArrayToDisplay[i].accent;
-            // if (i % 2 === 0) {
-                filterRow = document.createElement("div")
-                filterRow.classList.add("d-flex", "w-100", "align-items-start", "justify-content-between", "flex-sm-row")
-                filterDomElement.appendChild(filterRow)
-            // }
+            
+            filterRow = document.createElement("div")
+            filterRow.classList.add("d-flex", "w-100", "align-items-start", "justify-content-between", "flex-sm-row")
+            filterDomElement.appendChild(filterRow)
+            
             filterItem = document.createElement("a")
             filterItem.classList.add(typeFilter,"dropdown-item", "col", "col-12", "text-white", "pl-0", "pl-lg-3")
             filterItem.innerHTML = `${filterElement}`
@@ -103,13 +103,6 @@ var recipeDatas = (data) => {
 
             addFilterListener(filterItem)
         }
-        // if (filterArrayToDisplay.length % 2 === 1) {
-        //     filterItem = document.createElement("a")
-        //     filterItem.classList.add(typeFilter,"dropdown-item", "col", "col-12", "text-white", "pl-0", "pl-lg-3")
-        //     filterRow.appendChild(filterItem)
-
-        //     addFilterListener(filterItem)
-        // }
 
     }
 
@@ -142,7 +135,7 @@ var recipeDatas = (data) => {
 
     filterIcon = filterItem.querySelector(".filter-icon")
     filterIcon.addEventListener("click", (e) => {
-        removeTag(e,"remove")
+        clickOnTag(e,"remove")
     })
     
     for (let i = 0; i < inputFilters.length; i++) {

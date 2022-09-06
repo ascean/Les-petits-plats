@@ -1,25 +1,38 @@
 /**
- * suppression du tag cliqué / élément ajouté dans la liste des items filtres
+ * 1-suppression du tag cliqué / élément ajouté dans la liste des items filtres
+ * 2-recherche des recettes correspondant à la saisie user + tags sélectionnés
+ * 3-affichage des recettes concernées
+ * 3-affichage des filtres concernés
  * call dans listener.js sur click de l'icon du tag
  * @param {object}  //button tag icon
  */
- var removeTag = (e) => {
+ var clickOnTag = (e) => {
+
     let tagItem = e.target.parentNode
     let tagText = e.target.parentNode.firstChild.textContent.toLowerCase().noAccent().trim()
+
 
     let tempFilterArray = filtersArray.filter(element =>element.noAccent === tagText)
     for (let i = 0; i < tempFilterArray.length; i++) {
         tempFilterArray[i].display = true;
     }
+    
+    //*1*
     filterItemsContainer.removeChild(tagItem)
+    //*2*
     searchRecipesWithTags()
+    //*3*
     displayRecipes()
+    //*4*
     displayFilters()
 }
 
+/**
+ * recherche des recettes correspondant à la saisie user + tags sélectionnés
+ */
 var searchRecipesWithTags = () => {
 
-    let nbTag=1
+    let nbTag=0
     tagArray = []
 
     //si saisie user dans rechercher une recette
@@ -27,10 +40,12 @@ var searchRecipesWithTags = () => {
         let searchRecipe = inputSearch.value.toLowerCase().noAccent()
         searchForRecipes(searchRecipe)
         tagArray = recipesArray.filter(element => element.display === true)
-        if (tagArray.length == 0) {
-            nbTag = 0
-        }else{
+        if (tagArray.length > 0) {
             nbTag = 1
+        }else{
+            for (let i = 0; i < recipesArray.length; i++) {
+                recipesArray[i].display = false
+            }
         }
     }
 
@@ -73,74 +88,8 @@ var searchRecipesWithTags = () => {
         }
     //aucun filtre ni recherche, on affiche toutes les recettes
     }else{
-        let bDisplay = true
-        if (nbTag == 0) {
-            bDisplay = false
-        }
-        for (let i = 0; i < recipesArray.length; i++) {
-            recipesArray[i].display = bDisplay
-        }
-    }
-}
-
-
-
-//récupération des tags et recup des recipes et filtres concernés
-var filterTagsGestion = () => {
-
-    const ingredientsTag = document.querySelectorAll(".ingredientTag")
-    const ustensilsTag = document.querySelectorAll(".ustensilTag")
-    const appliancesTag = document.querySelectorAll(".applianceTag")
-    let nbTag = ingredientsTag.length + ustensilsTag.length + appliancesTag.length
-    if ( nbTag == 0) {
         for (let i = 0; i < recipesArray.length; i++) {
             recipesArray[i].display = true
         }
-    }else{
-
-        let filtersToTagArray = []
-
-        if (ingredientsTag.length > 0) {
-            filtersToTagArray = getNewTags(ingredientsTag,ingredientsArray)
-        }
-        if (ustensilsTag.length > 0) {
-            filtersToTagArray = filtersToTagArray.concat(getNewTags(ustensilsTag,ustensilsArray))
-        }
-        if (appliancesTag.length > 0) {
-            filtersToTagArray = filtersToTagArray.concat(getNewTags(appliancesTag,appliancesArray))
-        }
-
-        //update recipes to display depending on tag filters
-        for (let i = 0; i < recipesArray.length; i++) {
-            recipesArray[i].display = false
-        }
-        for (let i = 0; i < filtersToTagArray.length; i++) {
-            const id = filtersToTagArray[i].id;
-            if (filtersToTagArray.filter(element => element.id == id).length == nbTag){
-                recipesArray.filter(element => element.id == id)[0].display = true
-            }            
-        }
-        
-    }
-
-}
-
-/**
- * Récupération de l'ensemble des tags
- * @param {object} filtersTag .ingredientTag, .ustensilTag, .applianceTag
- * @param {array} filtersArray  ingredientsArray, ustensilsArray, appliancesArray
- * @returns array avec l'ensemeble des tags
- */
- var getNewTags = (filtersTag, filtersArray) => {
-
-    let filtersToTagArray = []
-    let tempArray = []
-    if (filtersTag.length > 0) {
-        for (let i = 0; i < filtersTag.length; i++) {
-            const filterToTag = filtersTag[i].firstChild.textContent.toLowerCase().noAccent().trim();
-            tempArray = filtersArray.filter(element => element.noAccent === filterToTag)
-            filtersToTagArray = filtersToTagArray.concat(tempArray)
-        }
-        return filtersToTagArray
     }
 }

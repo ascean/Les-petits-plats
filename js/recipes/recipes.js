@@ -1,19 +1,18 @@
 var displayRecipes = (mode) => { 
 
     sectionRecipes.innerHTML = ""
-
+    const noResult  = document.getElementById("noresult")
+    noResult.classList.add("d-none")   
+    
     if (mode=="reset") {
         for (let i = 0; i < recipesArray.length; i++) {
             recipesArray[i].display = true
         }
     }
-
+    
     let recipesToAddArray = recipesArray.filter(recipe => recipe.display===true)
-    const noResult  = document.getElementById("noresult")
     if (recipesToAddArray.length == 0) {
         noResult.classList.remove("d-none")   
-    }else{
-        noResult.classList.add("d-none")   
     }
 
     for (let i = 0; i < recipesToAddArray.length; i++) {
@@ -33,6 +32,7 @@ var displayRecipes = (mode) => {
 /**
  * recherche de l'élement saisi dans le titre de la recette, la description ou les ingrédients
  * modif display = true pour les recettes correspondant au filtre
+ * @param {string} searchText 
  */
 var searchForRecipes = (searchText) => {
     
@@ -81,26 +81,3 @@ var searchUserRecipes = () =>{
     displayFilters()
 
 }
-
-// var searchForRecipesWithTag = () => {
-    
-//     for (let i = 0; i < recipesArray.length; i++) {
-//         recipesArray[i].display = false;
-//     }
-    
-//     //filtre des recettes en fonction des tags ingrédients
-//     let tempFilterArray = filtersArray.filter(element => element.type == "ingredient")
-//     let tempTagArray = tagArray.filter(element => element.tagType="ingredientTag")
-
-//     for (let i = 0; i < tempFilterArray.length; i++) {
-//         const filterElement = tempFilterArray[i];
-//         for (let j = 0; j < tempTagArray.length; j++) {
-//             const tagElement = tempTagArray[j];
-//             if (filterElement.id == tagElement.tagIdRecipe) {
-//                 recipesArray.filter(element => element.id == filterElement.id)[0].display = true
-//             }
-            
-//         }
-//     }
-//     displayRecipes()
-// }

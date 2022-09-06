@@ -1,10 +1,14 @@
 /**
- * display appliances from recipes (display=true)
+ * Affichage des filtres
+ * 1- recherche de l'ensemble des filtres correspondant aux recettes concernées
+ * 2- suppression des éléments en tag dans la liste des filtres
+ * 3- création de la liste des filtres dans le DOM
+ * @returns tempFiltersArray
  */
 var displayFilters = () => {
 
+    //*1*
     let tempFiltersArray = []
-    console.log(filtersArray.filter(elt => elt.display == true))
     const tempRecipesArray = recipesArray.filter(element => element.display === true)
     for (let i = 0; i < tempRecipesArray.length; i++) {
         const recipe = tempRecipesArray[i];
@@ -12,7 +16,7 @@ var displayFilters = () => {
     }
     tempFiltersArray = removeDuplicates(tempFiltersArray, "noAccent")
 
-    //suppression des éléments en tag dans la liste des filtres
+    //*2*
     if (tagArray.length > 0) {
         for (let i = 0; i < tagArray.length; i++) {
             const tag = tagArray[i];
@@ -24,14 +28,13 @@ var displayFilters = () => {
         }
     }
 
-    ingredientsArray = tempFiltersArray.filter(element => element.type === "ingredient" && element.display == true)
+    //*3*
+    ingredientsArray = tempFiltersArray.filter(element => element.type === "ingredient")
     createFilterDOM(ingredientsArray, ingredientFilterDOM, "ingredient")
-
-    ustensilsArray = tempFiltersArray.filter(element => element.type === "ustensil")
-    createFilterDOM(ustensilsArray, ustensilFilterDOM, "ustensil")
-
     appliancesArray = tempFiltersArray.filter(element => element.type === "appliance")
     createFilterDOM(appliancesArray, applianceFilterDOM, "appliance")
+    ustensilsArray = tempFiltersArray.filter(element => element.type === "ustensil")
+    createFilterDOM(ustensilsArray, ustensilFilterDOM, "ustensil")
 
     return tempFiltersArray
 
@@ -42,9 +45,8 @@ var displayFilters = () => {
  * Déclencheur : clic sur un élément de filtre
  * 1-ajout du tag dans le DOM
  * 2-recherche des recettes en fonction des tags + recherche user
- * 3-suppression du filtre cliqué de la liste des filtres
- * 4-affichage des recettes concernées
- * 5-affichage des filtres concernés
+ * 3-affichage des recettes concernées
+ * 4-affichage des filtres concernés
  * @param {object} e élément du DOM
  */
 var clickOnFilter = (e) => {
@@ -56,28 +58,11 @@ var clickOnFilter = (e) => {
 
     //*2*
     searchRecipesWithTags()
+
     //*3*
-    // switch (typeFilter) {
-    //     case "ingredient" :
-    //         updateFilterLists(filterToTag.toLowerCase().noAccent(), 0, "remove",[])
-    //         break;
-    //     case "appliance" :
-    //         updateFilterLists(filterToTag.toLowerCase().noAccent(), 1, "remove",[])
-    //         break;
-    //     case "ustensil" :
-    //         updateFilterLists(filterToTag.toLowerCase().noAccent(), 2, "remove",[])
-    //         break;
-
-    //     default:
-    //         break;
-    // }
-
-
-
-    //*4*
     displayRecipes()
 
-    //*5*
+    //*4*
     displayFilters()
 
 }
@@ -91,20 +76,20 @@ var clickOnFilter = (e) => {
 var updateFilterLists = (filterUser, type, mode, tempFilterArray) => {
 
     let filterDOM
-    let typeFilter
+    let filterType
 
     switch (type) {
         case 0:
             filterDOM = ingredientFilterDOM
-            typeFilter = "ingredient"
+            filterType = "ingredient"
             break;
         case 1:
             filterDOM = applianceFilterDOM
-            typeFilter = "appliance"
+            filterType = "appliance"
             break;
         case 2:
             filterDOM = ustensilFilterDOM
-            typeFilter = "ustensil"
+            filterType = "ustensil"
             break;
 
         default:
@@ -112,23 +97,17 @@ var updateFilterLists = (filterUser, type, mode, tempFilterArray) => {
     }
 
     if (tempFilterArray.length == 0) {
-        tempFilterArray = filtersArray.filter(element => element.type === typeFilter)
+        tempFilterArray = filtersArray.filter(element => element.type === filterType)
     } else {
-        tempFilterArray = tempFilterArray.filter(element => element.type === typeFilter)
+        tempFilterArray = tempFilterArray.filter(element => element.type === filterType)
     }
 
-    //tempFilterArray = removeDuplicates(tempFilterArray,"noAccent")
     let tempTagArray = removeDuplicates(tagArray, "noAccent")
 
     //filtre du tableau filtersArray en fonction du type de filtre
-    console.log(tempTagArray);
-    console.log(tempFilterArray);
-    //duplicates ????
     for (let i = 0; i < tempFilterArray.length; i++) {
 
         const filterElt = tempFilterArray[i];
-
-
         switch (mode) {
             //Ajout élément dans la liste (après suppression tag)
             case "add":
@@ -138,6 +117,7 @@ var updateFilterLists = (filterUser, type, mode, tempFilterArray) => {
                     filterElt.display = false
                 }
                 break;
+
             //Suppression de l'élément dans la liste (après ajout tag)
             case "remove":
                 //attention ! supprimer aussi les autres éléments taggés!
@@ -147,47 +127,55 @@ var updateFilterLists = (filterUser, type, mode, tempFilterArray) => {
                     filterElt.display = true
                 }
                 break;
+
             //recherche élément dans la liste
             case "select":
                 filterElt.display = filterElt.noAccent.includes(filterUser)
                 break;
+
             default:
                 break;
         }
     }
-
-    //createFilterDOM(tempFilterArray, filterDOM, typeFilter)
-    //inputFilters = document.querySelectorAll('.input-filter')
 }
 
+/**
+ * Saisie dans une zone de filtre -> affichage des éléments de filtres contenant la saisie
+ * call sur input de champ de saisie filtre
+ * @param {object} e 
+ */
 var searchUserFilters = (e) => {
     const filterUser = e.target.value.toLowerCase().noAccent()
+    let filterArray = []
+    let filterDOM
+    let filterType
+
     switch (e.currentTarget.id) {
         case "input-ingredient":
-            for (let i = 0; i < ingredientsArray.length; i++) {
-                const element = ingredientsArray[i].noAccent;
-                ingredientsArray[i].display = element.includes(filterUser)
-            }
-            createFilterDOM(ingredientsArray, ingredientFilterDOM, "ingredient")
+            filterArray = ingredientsArray
+            filterDOM   = ingredientFilterDOM
+            filterType  = "ingredient"
             break;
+        
         case "input-appliance":
-            for (let i = 0; i < appliancesArray.length; i++) {
-                const element = appliancesArray[i].noAccent;
-                appliancesArray[i].display = element.includes(filterUser)
-            }
-            createFilterDOM(appliancesArray, applianceFilterDOM, "appliance")
+            filterArray = appliancesArray
+            filterDOM   = applianceFilterDOM
+            filterType  = "appliance"
             break;
         case "input-ustensil":
-            for (let i = 0; i < ustensilsArray.length; i++) {
-                const element = ustensilsArray[i].noAccent;
-                ustensilsArray[i].display = element.includes(filterUser)
-            }
-            createFilterDOM(ustensilsArray, ustensilFilterDOM, "ustensil")
+            filterArray = ustensilsArray
+            filterDOM   = ustensilFilterDOM
+            filterType  = "ustensil"
             break;
-
+            
         default:
-            break;
+                break;
     }
+    for (let i = 0; i < filterArray.length; i++) {
+        const element = filterArray[i].noAccent;
+        filterArray[i].display = element.includes(filterUser)
+    }
+    createFilterDOM(filterArray, filterDOM, filterType)
 
     for (let i = 0; i < filtersArray.length; i++) {
         filtersArray[i].display = true

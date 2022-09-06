@@ -1,6 +1,3 @@
-const navLinks = document.querySelectorAll(".nav-link")
-const navItems = document.querySelectorAll(".nav-item")
-
 /**
  * survol du nav-item ou clic sur nav-link (navigation au clavier)
  *      affichage de l'input avec le placeholder
@@ -16,13 +13,11 @@ var displayFiltersMenu = (navItem, action) => {
         
         inputFilter.classList.remove("d-none")
         navItem.classList.replace("rounded","rounded-top")
-        navItem.classList.replace("col-lg-2", "col-lg-7")
         
     }else{
         
         inputFilter.classList.add("d-none")
         navItem.classList.replace("rounded-top","rounded")
-        navItem.classList.replace("col-lg-7", "col-lg-2")
         
     }
 }
@@ -37,7 +32,6 @@ var closeFilterMenu = (newNavItem) => {
         if (navItem != newNavItem && navItem.classList.contains("show")) {
             navItem.querySelector(".form-control").classList.add("d-none")
             navItem.classList.replace("rounded-top","rounded")
-            navItem.classList.replace("col-lg-7", "col-lg-2")
             navItem.children[2].classList.remove("show")
         }
     });

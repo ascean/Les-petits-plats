@@ -6,6 +6,9 @@ var setupListeners = () => {
         searchUserRecipes()
     })
     
+    formSearch.addEventListener("submit", (e) => {
+        e.preventDefault()
+    })
     //validation saisie avec Entrée ou clic sur l'icone X
     inputSearch.addEventListener('search', (e) => {
         if(inputSearch.value) {
@@ -14,10 +17,6 @@ var setupListeners = () => {
             displayRecipes()
             displayFilters()
         }
-    })
-
-    formSearch.addEventListener("submit", (e) => {
-        e.preventDefault()
     })
 
     //Gestion menus filtres
@@ -34,12 +33,10 @@ var setupListeners = () => {
     navLinks.forEach(navLink => {
         navLink.addEventListener("click", () => {
             const navItem = navLink.parentElement
-            console.log("click");
             displayFiltersMenu(navItem, "open")
         })
         navLink.addEventListener("focus", () => {
             const navItem = navLink.parentElement
-            console.log("focus");
             closeFilterMenu(navItem)
         })
     })
@@ -48,9 +45,7 @@ var setupListeners = () => {
     for (let i = 0; i < inputFilters.length; i++) {
         const inputFilter = inputFilters[i];
         inputFilter.addEventListener('input', (e) => {
-
             searchUserFilters(e)
-            
         })
     }
 
@@ -60,7 +55,6 @@ var setupListeners = () => {
 
 //clic sur un filtre -> suppression de la liste + ajout tag
 var addFilterListener = (filterItem) => {
-
     filterItem.addEventListener("click", (e) => {
         clickOnFilter(e)
     })
