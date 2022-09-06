@@ -42,10 +42,6 @@ var searchRecipesWithTags = () => {
         tagArray = recipesArray.filter(element => element.display === true)
         if (tagArray.length > 0) {
             nbTag = 1
-        }else{
-            for (let i = 0; i < recipesArray.length; i++) {
-                recipesArray[i].display = false
-            }
         }
     }
 
@@ -86,10 +82,20 @@ var searchRecipesWithTags = () => {
         for (let i = 0; i < recipesToDisplayArray.length; i++) {
             recipesArray.filter(element => element.id == recipesToDisplayArray[i].id)[0].display = true
         }
-    //aucun filtre ni recherche, on affiche toutes les recettes
+
+    //(aucun tag) et (recherche vide ou sans résultat)
     }else{
-        for (let i = 0; i < recipesArray.length; i++) {
-            recipesArray[i].display = true
+        //aucune recette affichée
+        if(inputSearch.value.length > 2) {
+            for (let i = 0; i < recipesArray.length; i++) {
+                recipesArray[i].display = false
+            }
+        }else{
+            //on affiche toutes les recettes
+            for (let i = 0; i < recipesArray.length; i++) {
+                recipesArray[i].display = true
+            }
+
         }
     }
 }
