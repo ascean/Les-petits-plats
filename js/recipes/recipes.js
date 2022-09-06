@@ -34,39 +34,19 @@ var displayRecipes = () => {
 };
 
 /**
- * 
  * recherche de l'élement saisi dans le titre de la recette, la description ou les ingrédients
  * modif display = true pour les recettes correspondant au filtre
  * @param {string} searchText 
- * @returns recipesArray avec display == true
+ * @returns array avec les recettes correspondant au filtre
  */
-var searchForRecipes = (searchText) => {
-    
-    for (let i = 0; i < recipesArray.length; i++) {
+ var searchForRecipes = (searchText) => {
 
-        const recipe = recipesArray[i];
-        
-        //recherche dans le titre de la recette
-        if (recipe.name.toLowerCase().noAccent().includes(searchText)) {    
-            recipe.display = true
-        
-            //recherche dans la description de la recette
-        } else if (recipe.description.toLowerCase().noAccent().includes(searchText)) {
-            recipe.display = true
-            
-        //recherche dans les ingrédients de la recette
-        } else {
-            
-            for (let j = 0; j < recipe.ingredients.length; j++) {
-                const ingredient = recipe.ingredients[j].ingredient
-                if (ingredient.toLowerCase().noAccent().includes(searchText)) {
-                    recipe.display = true
-                    break
-                }
-            }
-        }
-    }
-    return recipesArray.filter(recipe => recipe.display==true)
+    let tempRecipesArray = recipesArray
+    tempRecipesArray = tempRecipesArray.filter(recipe => recipe.name.toLowerCase().noAccent().includes(searchText)==true 
+         || recipe.description.toLowerCase().noAccent().includes(searchText)==true
+         || recipe.ingredients.filter(elt => elt.ingredient.toLowerCase().noAccent().includes(searchText) == true).length>0)
+    
+    return tempRecipesArray
 }
 
 
