@@ -72,6 +72,7 @@ var clickOnFilter = (e) => {
  * @param {string} filterUser saisie utilisateur ou nom de l'élément cliqué
  * @param {string} type ingredient ou ustensil ou appliance
  * @param {string} mode remove = on supprime le filtre de la liste / add = ajout du filtre dans la liste
+ * @param
  */
 var updateFilterLists = (filterUser, type, mode, tempFilterArray) => {
 
@@ -97,10 +98,9 @@ var updateFilterLists = (filterUser, type, mode, tempFilterArray) => {
     }
 
     if (tempFilterArray.length == 0) {
-        tempFilterArray = filtersArray.filter(element => element.type === filterType)
-    } else {
-        tempFilterArray = tempFilterArray.filter(element => element.type === filterType)
-    }
+        tempFilterArray = filtersArray;
+    } 
+    tempFilterArray = tempFilterArray.filter(element => element.type === filterType)
 
     let tempTagArray = removeDuplicates(tagArray, "noAccent")
 
@@ -111,20 +111,18 @@ var updateFilterLists = (filterUser, type, mode, tempFilterArray) => {
         switch (mode) {
             //Ajout élément dans la liste (après suppression tag)
             case "add":
+                filterElt.display = false
                 if (filterElt.noAccent == filterUser) {
                     filterElt.display = true
-                } else {
-                    filterElt.display = false
                 }
                 break;
 
             //Suppression de l'élément dans la liste (après ajout tag)
             case "remove":
                 //attention ! supprimer aussi les autres éléments taggés!
+                filterElt.display = true
                 if (filterElt.noAccent == filterUser || tempTagArray.filter(tag => tag.noAccent == filterElt.noAccent).length > 0) {
                     filterElt.display = false
-                } else {
-                    filterElt.display = true
                 }
                 break;
 

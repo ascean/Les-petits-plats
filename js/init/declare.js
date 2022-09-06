@@ -7,7 +7,7 @@ const filterItemsContainer  = document.getElementById("filter-items")
 const ingredientFilterDOM   = document.getElementById("ingredient-filter")
 const applianceFilterDOM    = document.getElementById("appliance-filter")
 const ustensilFilterDOM     = document.getElementById("ustensil-filter")
-
+const formFilters     =document.querySelectorAll('.form-filter')
 let inputFilters = document.querySelectorAll('.input-filter')
 let dropdownItems
 let filterItems

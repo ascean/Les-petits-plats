@@ -1,3 +1,7 @@
+/**
+ * Initialisation du tableau des recettes recipesArray à partir de recipe.js
+ * ajout d'un key display
+ */
 var initRecipesArray = () => {
 
     sectionRecipes.innerHTML = ""
@@ -11,6 +15,9 @@ var initRecipesArray = () => {
     }
 }
 
+/**
+ * Initialisation des tableaux de filtres ingrédients, ustensiles et appareils
+ */
 var initFiltersArray = () => {
     for (let i = 0; i < recipesArray.length; i++) {
         const recipe = recipesArray[i];
@@ -48,11 +55,21 @@ var initFiltersArray = () => {
     }
 }
 
+/**
+ * 1-Initialisation du tableau des recettes
+ * 2-Initialisation des tableaux filtres
+ * 3-Affichage des recettes
+ * 4-Affichages des filtres
+ * 5- mise en place des listeners
+ */
+var init = () => {
 
+    initRecipesArray()
+    initFiltersArray()
+    displayRecipes()
+    displayFilters()
+    setupListeners()
+    
+}
 
-initRecipesArray()
-initFiltersArray()
-
-displayRecipes()
-displayFilters()
-setupListeners()
+init()

@@ -9,6 +9,15 @@ p {
     font-family: "Roboto";
 }
 
+.sr-only {
+    height: 1px;
+    width: 1px;
+    left: 0;
+    overflow: hidden;
+    position: absolute;
+    top: -10000px;
+}
+
 //-----------------------SECTION RECHECHE----------------------
 #section-search div{
     background-color: #e7e7e7;

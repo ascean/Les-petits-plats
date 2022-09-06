@@ -29,7 +29,7 @@
         <div class="row justify-content-center m-3">
             <div class="col mx-auto text-center">
                 <a href="#">
-                    <img class="w-50"src="./assets/logo/logo_les_petits_plats.png" alt="">
+                    <img class="w-50" src="./assets/logo/logo_les_petits_plats.png" alt="logo Les Petits Plats">
                 </a>
             </div>
         </div>
@@ -39,10 +39,11 @@
         <div class="rounded my-4">
             <form id="form-search">
                 <div class="input-group rounded bg-opacity-10 row mx-auto py-2 ">
+                    <label for="input-search" class="sr-only" id="input-search-label">Rechercher une recette</label>
                     <input id="input-search" type="search" class="form-control col-12 border-0 bg-transparent text-" placeholder="Rechercher une recette" 
-                    aria-label="Rechercher une recette" aria-describedby="search-addon" value=""/>
-                    <span class="input-group-text border-0 bg-transparent mr-0" id="search-addon">
-                        <i class="fas fa-search"></i>
+                            aria-label="Rechercher une recette" aria-labelledby="input-search-label" value=""/>
+                    <span class="input-group-text border-0 bg-transparent mr-0">
+                        <span class="fas fa-search"></span>
                     </span>
                 </div>
             </form>
@@ -77,8 +78,9 @@
                             </a>
                             
                             <form class="form-filter">
+                                <label for="input-ingredient"  class="sr-only" id="input-ingredient-label">Rechercher un ingrédient</label>
                                 <input type="text" id="input-ingredient" class="input-filter form-control position-absolute w-75 outline-0 border-0 primary-color d-none" 
-                                placeholder="Rechercher un ingrédient" tabindex="0">
+                                placeholder="Rechercher un ingrédient" aria-labelledby="input-ingredient-label" tabindex="0">
                             </form> 
                             
                             <div id="ingredient-filter" class="dropdown-menu w-100 row primary-color border-0 rounded-bottom pt-0 mt-0 mb-3" aria-labelledby="navbarIngredientMenuLink ">
@@ -94,9 +96,9 @@
                             </a>
                             
                             <form class="form-filter">
+                                <label for="input-appliance"  class="sr-only" id="input-appliance-label">Rechercher un appareil</label>
                                 <input type="text" id="input-appliance" class="input-filter form-control position-absolute w-75 outline-0 border-0 
-                                success-color d-none" 
-                                placeholder="Rechercher un appareil">
+                                success-color d-none" placeholder="Rechercher un appareil" aria-labelledby="input-appliance-label">
                             </form> 
 
                             <div id="appliance-filter" class="dropdown-menu w-100 row success-color border-0 rounded-bottom pt-0 mt-0 mb-3" aria-labelledby="navbarApplianceMenuLink ">
@@ -112,8 +114,9 @@
                             </a>
                             
                             <form class="form-filter">
+                                <label for="input-ustensil"  class="sr-only" id="input-ustensil-label">Rechercher un ustensil</label>
                                 <input type="text" id="input-ustensil" class="input-filter form-control position-absolute w-75 outline-0 border-0 danger-color d-none" 
-                                placeholder="Rechercher un ustensile" tabindex="0">
+                                placeholder="Rechercher un ustensile" aria-labelledby="input-ustensil-label" tabindex="0">
                             </form> 
 
                             <div id="ustensil-filter" class="dropdown-menu w-100 row danger-color border-0 rounded-bottom pt-0 mt-0 mb-3" aria-labelledby="navbarUstensilMenuLink ">
@@ -140,7 +143,7 @@
     <script src="./data/recipes.js"></script>
     <script src="./js/init/declare.js"></script>
     <script src="./js/util/util.js"></script>
-    <script src="./js/factory/factory.js"></script>
+    <script src="./js/renderer/renderer.js"></script>
     <script src="./js/filters/filter.js"></script> 
     <script src="./js/filters/tag.js"></script>
     <script src="./js/filters/filterList.js"></script>

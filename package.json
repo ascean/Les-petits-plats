@@ -4,6 +4,8 @@
   },
   "scripts": {
     "sass": "sass --watch ./sass/style.scss:./css/style.css --no-source-map"
+  },
+  "devDependencies": {
+    "eslint": "^8.23.0"
   }
-
 }

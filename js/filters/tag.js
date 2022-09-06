@@ -38,8 +38,10 @@ var searchRecipesWithTags = () => {
     //si saisie user dans rechercher une recette
     if (inputSearch.value.length>2) {
         let searchRecipe = inputSearch.value.toLowerCase().noAccent()
-        searchForRecipes(searchRecipe)
-        tagArray = recipesArray.filter(element => element.display === true)
+        for (let i = 0; i < recipesArray.length; i++) {
+            recipesArray[i].display = false
+        }
+        tagArray = searchForRecipes(searchRecipe)
         if (tagArray.length > 0) {
             nbTag = 1
         }

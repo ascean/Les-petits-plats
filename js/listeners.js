@@ -41,6 +41,11 @@ var setupListeners = () => {
         })
     })
 
+    formFilters.forEach(formFilter => {
+        formFilter.addEventListener("submit", (e) => {
+            e.preventDefault()
+        })
+    })
     //Saisie dans une zone de filtre
     for (let i = 0; i < inputFilters.length; i++) {
         const inputFilter = inputFilters[i];
@@ -48,8 +53,6 @@ var setupListeners = () => {
             searchUserFilters(e)
         })
     }
-
-    
 
 }
 
