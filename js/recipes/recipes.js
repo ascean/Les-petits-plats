@@ -38,19 +38,8 @@ var displayRecipes = () => {
  * modif display = true pour les recettes correspondant au filtre
  * @param {string} searchText 
  * @returns array avec les recettes correspondant au filtre
- */
- var searchForRecipes = (searchText) => {
-     
-     let tempRecipesArray = recipesArray
-     tempRecipesArray = tempRecipesArray.filter(recipe => recipe.name.toLowerCase().noAccent().includes(searchText)==true 
-     || recipe.description.toLowerCase().noAccent().includes(searchText)==true
-     || recipe.ingredients.filter(elt => elt.ingredient.toLowerCase().noAccent().includes(searchText) == true).length>0)
-     
-     return tempRecipesArray
-    }
-    
-    
-var searchForRecipes2 = (searchText) => {
+ */    
+var searchForRecipes = (searchText) => {
 
     for (let i = 0; i < recipesArray.length; i++) {
 
