@@ -82,6 +82,6 @@ var searchUserRecipes =() =>{
     //*2*
     displayRecipes()
     //*3*
-    displayFilters()
+    updateFiltersArray()
 
 }

@@ -16,7 +16,7 @@ var initRecipesArray = () => {
 }
 
 /**
- * Initialisation des tableaux de filtres ingrédients, ustensiles et appareils
+ * Initialisation du tableaux de filtres ingrédients, ustensiles et appareils
  */
 var initFiltersArray = () => {
     for (let i = 0; i < recipesArray.length; i++) {
@@ -63,11 +63,16 @@ var initFiltersArray = () => {
  * 5- mise en place des listeners
  */
 var init = () => {
-
+    
+    //*1*
     initRecipesArray()
+    //*2*
     initFiltersArray()
+    //*3*
     displayRecipes()
-    displayFilters()
+    //*4*
+    updateFiltersArray()
+    //*5*
     setupListeners()
     
 }

@@ -9,8 +9,7 @@
  var clickOnTag = (e) => {
 
     let tagItem = e.target.parentNode
-    let tagText = e.target.parentNode.firstChild.textContent.toLowerCase().noAccent().trim()
-
+    let tagText = tagItem.firstChild.textContent.toLowerCase().noAccent().trim()
 
     let tempFilterArray = filtersArray.filter(element =>element.noAccent === tagText)
     for (let i = 0; i < tempFilterArray.length; i++) {
@@ -24,7 +23,7 @@
     //*3*
     displayRecipes()
     //*4*
-    displayFilters()
+    updateFiltersArray()
 }
 
 /**

@@ -5,7 +5,7 @@
  * @param {DOMElement} navItem élément li
  * @param {string} action open ou close
  */
-var displayFiltersMenu = (navItem, action) => {
+var updateFilterList = (navItem, action) => {
 
     const inputFilter = navItem.querySelector(".form-control")
     
@@ -26,7 +26,7 @@ var displayFiltersMenu = (navItem, action) => {
  * Retour à l'état initial pour le menu actuellement ouvert
  * @param {DOMElement} newNavItem menu sur lequel arrive le focus 
  */
-var closeFilterMenu = (newNavItem) => {
+var closeFilterList = (newNavItem) => {
 
     navItems.forEach(navItem => {
         if (navItem != newNavItem && navItem.classList.contains("show")) {

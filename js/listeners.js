@@ -1,11 +1,11 @@
 //-----------------------------------------LISTENERS------------------------------------------
 var setupListeners = () => {
 
+    /******Zone de recherche******/
     //Saisie dans la zone de recherche des recettes
     inputSearch.addEventListener('input', () => {
         searchUserRecipes()
     })
-    
     formSearch.addEventListener("submit", (e) => {
         e.preventDefault()
     })
@@ -15,29 +15,30 @@ var setupListeners = () => {
             searchUserRecipes()
         }else{
             displayRecipes()
-            displayFilters()
+            updateFiltersArray()
         }
     })
-
-    //Gestion menus filtres
+    
+    /******FILTRES******/
+    //Listes
     navItems.forEach(navItem => {
         navItem.addEventListener("mouseleave", () => {
-            displayFiltersMenu(navItem, "close")
+            updateFilterList(navItem, "close")
         })
         navItem.addEventListener("mouseover", () => {
-            displayFiltersMenu(navItem, "open")
+            updateFilterList(navItem, "open")
         })
     })
-
-    //Gestion menus filtres : navigation au clavier
+    
+    //Listes : navigation au clavier
     navLinks.forEach(navLink => {
         navLink.addEventListener("click", () => {
             const navItem = navLink.parentElement
-            displayFiltersMenu(navItem, "open")
+            updateFilterList(navItem, "open")
         })
         navLink.addEventListener("focus", () => {
             const navItem = navLink.parentElement
-            closeFilterMenu(navItem)
+            closeFilterList(navItem)
         })
     })
 
@@ -46,17 +47,17 @@ var setupListeners = () => {
             e.preventDefault()
         })
     })
-    //Saisie dans une zone de filtre
+    //Listes : Saisie dans une zone de filtre
     for (let i = 0; i < inputFilters.length; i++) {
         const inputFilter = inputFilters[i];
         inputFilter.addEventListener('input', (e) => {
-            searchUserFilters(e)
+            searchInputFilter(e)
         })
     }
 
 }
 
-//clic sur un filtre -> suppression de la liste + ajout tag
+//clic sur un élément de la liste -> suppression de la liste + ajout tag
 var addFilterListener = (filterItem) => {
     filterItem.addEventListener("click", (e) => {
         clickOnFilter(e)

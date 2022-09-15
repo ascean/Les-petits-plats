@@ -74,8 +74,9 @@ var recipeDatas = (data) => {
  * création du DOM des filtres Ingrédients, Appareils et Ustensiles 
  * @param {Array} filterArray  = ingredientsArray, ustensilsArray, appliancesArray
  * @param {object} filterDomElement = ingredientFilterDOM, ustensilFilterDOM, applianceFilterDOM 
+ * @param {string} typeFilter = ingredient, ustensil, appliance
  */
- var createFilterDOM = (filterArray, filterDomElement, typeFilter) => {
+var createFilterDOM = (filterArray, filterDomElement, typeFilter) => {
 
     if (filterArray.length > 0) {
 
@@ -110,24 +111,26 @@ var recipeDatas = (data) => {
 
  /**
  * création du DOM tag correspondant au filtre saisi
+ * @param {string} type = ingredient, ustensil, appliance
+ * @param {string} tag  = texte du tag
  */
-  var addTagDOM = (type,tag) => {
+  var createTagDOM = (type,tag) => {
 
     let bgColor
-     
-     switch (type) {
-         case "ingredient":
-             bgColor = "primary-color"
-             break;
-         case "appliance" :
-            bgColor = "success-color"
-             break;
-         case "ustensil" :
+    switch (type) {
+        case "ingredient":
+            bgColor = "primary-color"
+            break;
+        case "ustensil" :
             bgColor = "danger-color"
-             break;
-         default:
-             break;
-     }
+            break;
+        case "appliance" :
+            bgColor = "success-color"
+            break;
+        default:
+            break;
+    }
+    
     const filterItem = document.createElement("button")
     filterItem.classList.add("filter-item", type+"Tag", bgColor, "border-0", "rounded", "px-3", "py-2", "mb-3", "mr-2", "text-white")
     filterItem.innerHTML = `${tag} <i class="filter-icon fa-regular fa-circle-xmark ml-2 fs-5 align-middle"></i>`

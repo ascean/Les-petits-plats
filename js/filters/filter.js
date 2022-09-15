@@ -1,11 +1,11 @@
 /**
- * Affichage des filtres
+ * MAJ des filtres
  * 1- recherche de l'ensemble des filtres correspondant aux recettes concernées
  * 2- suppression des éléments en tag dans la liste des filtres
  * 3- création de la liste des filtres dans le DOM
  * @returns tempFiltersArray
  */
-var displayFilters = () => {
+var updateFiltersArray = () => {
 
     //*1*
     let tempFiltersArray = []
@@ -30,10 +30,11 @@ var displayFilters = () => {
 
     //*3*
     ingredientsArray = tempFiltersArray.filter(element => element.type === "ingredient")
-    createFilterDOM(ingredientsArray, ingredientFilterDOM, "ingredient")
     appliancesArray = tempFiltersArray.filter(element => element.type === "appliance")
-    createFilterDOM(appliancesArray, applianceFilterDOM, "appliance")
     ustensilsArray = tempFiltersArray.filter(element => element.type === "ustensil")
+
+    createFilterDOM(ingredientsArray, ingredientFilterDOM, "ingredient")
+    createFilterDOM(appliancesArray, applianceFilterDOM, "appliance")
     createFilterDOM(ustensilsArray, ustensilFilterDOM, "ustensil")
 
     return tempFiltersArray
@@ -54,7 +55,7 @@ var clickOnFilter = (e) => {
     let filterToTag = e.target.textContent
 
     //*1*
-    addTagDOM(typeFilter, filterToTag)
+    createTagDOM(typeFilter, filterToTag)
 
     //*2*
     searchRecipesWithTags()
@@ -63,7 +64,7 @@ var clickOnFilter = (e) => {
     displayRecipes()
 
     //*4*
-    displayFilters()
+    updateFiltersArray()
 
 }
 
@@ -72,7 +73,7 @@ var clickOnFilter = (e) => {
  * call sur input de champ de saisie filtre
  * @param {object} e 
  */
-var searchUserFilters = (e) => {
+var searchInputFilter = (e) => {
     const filterUser = e.target.value.toLowerCase().noAccent()
     let filterArray = []
     let filterDOM

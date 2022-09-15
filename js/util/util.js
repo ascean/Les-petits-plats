@@ -19,11 +19,17 @@ String.prototype.noAccent = function(){
     return words;
 }
 
-//retrait des éléments en double dans un tableau d'objets
+
+/**
+ * retrait des éléments en double dans un tableau d'objets
+ * @param {array} filterArray 
+ * @param {string} field 
+ * @returns array
+ */
 var removeDuplicates = (filterArray, field) => {
     
     // Declaration d'un nouveau tableau
-    let filterToDisplay = [];
+    let filterArrayToDisplay = [];
     // Declaration d'un objet vide
     let uniqueFilter = {};
     // Boucle dans le tableau
@@ -36,8 +42,8 @@ var removeDuplicates = (filterArray, field) => {
       
     //Boucle pour ajouter l'élément dans le tableau
     for (i in uniqueFilter) {
-        filterToDisplay.push(uniqueFilter[i]);
+        filterArrayToDisplay.push(uniqueFilter[i]);
     }
     //Retourne le nouveau tableau
-    return filterToDisplay
+    return filterArrayToDisplay
 }
